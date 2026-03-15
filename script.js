@@ -9,6 +9,35 @@ let isCelsius = true;
 
 const API_KEY = "a67c45d51fa14e1a316ed4af70aea3a8";
 
+function getLocationWeather() {
+  if (!navigator.geolocation) return; // browser doesn't support it
+
+  navigator.geolocation.displayWeather;
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+
+      weatherResult.innerHTML = '<div class="spinner"></div>';
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        displayWeather(data);
+      } catch (error) {
+        weatherResult.innerHTML = `<p class="error">❌ Could not fetch location weather.</p>`;
+      }
+    },
+    () => {
+      // user denied location — fail silently, no error shown
+    },
+  );
+}
+
+// call it when page loads
+getLocationWeather();
+
 function displayWeather(data) {
   lastData = data;
 
