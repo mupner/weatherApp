@@ -8,16 +8,28 @@
   </head>
   <body>
     <div class="container">
-      <h1>Aplicativo do Tempo</h1>
+      <h1
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+          justify-content: center;
+        "
+      >
+        <img
+          src="https://openweathermap.org/payload/api/media/file/02d.png"
+          alt="Weather-icon"
+        />
+        <p>Weather App</p>
+      </h1>
 
       <div class="search-box">
         <input type="text" id="city-input" placeholder="Enter a city..." />
         <button id="search-btn">Search</button>
       </div>
 
-      <div class="weather-result" id="weather-result">
-        <!-- Weather data will appear here -->
-      </div>
+      <div class="weather-result" id="weather-result"></div>
     </div>
 
     <script src="script.js"></script>
